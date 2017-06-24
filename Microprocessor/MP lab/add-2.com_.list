@@ -1,0 +1,53 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+add-2.com_ -- emu8086 assembler version: 4.08  
+ 
+[ 3/14/2013  --  12:38:58 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       name "add-2"
+[   2]        :                                       
+[   3]        :                                       ; this example calculates the sum of a vector with
+[   4]        :                                       ; another vector and saves result in third vector.
+[   5]        :                                       
+[   6]        :                                       ; you can see the result if you click the "vars" button.
+[   7]        :                                       ; set elements for vec1, vec2 and vec3 to 4 and show as "signed".
+[   8]        :                                       
+[   9]        :                                       org 100h
+[  10]        :                                       
+[  11]    0100: EB 04                                 jmp start
+[  12]    0102: 06 07 08 09                           arr db 06h, 07h, 08h ,09
+[  13]    0106:                                       start:
+[  14]    0106: BE 02 01                              lea si, arr
+[  15]    0109: B1 03                                 mov cl, 03h
+[  16]    010B: 8A 04                                 mov al, [si]
+[  17]    010D: 8A 1C                                 mov bl, [si]
+[  18]    010F: 46                                    inc si
+[  19]    0110:                                       search:
+[  20]    0110: 3A 04                                 cmp al,[si]
+[  21]    0112: 73 02                                 jnc max
+[  22]    0114: 8A 04                                 mov al,[si]
+[  23]    0116:                                       max:
+[  24]    0116: 3A 1C                                 cmp bl,[si]
+[  25]    0118: 72 02                                 jc min
+[  26]    011A: 8A 1C                                 mov bl, [si]
+[  27]    011C:                                       min:
+[  28]    011C: 46                                    inc si
+[  29]    011D: E2 F1                                 loop search
+[  30]    011F: C3                                    ret
+[  31]        :                                       
+[  32]        :                                       
+[  33]        :                                       
+[  34]        :                                       
+[  35]        :                                       
+ 
+===================================================================================================
+ 
+
+
+
+
+===================================================================================================

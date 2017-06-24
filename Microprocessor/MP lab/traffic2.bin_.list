@@ -1,0 +1,120 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+traffic2.bin_ -- emu8086 assembler version: 4.08  
+ 
+[ 1/17/2013  --  12:32:46 PM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       
+[   2]        :                                       ; Traffic ligts test 2 for
+[   3]        :                                       ; c:\emu8086\devices\Traffic_Lights.exe
+[   4]        :                                       
+[   5]        :                                       ; This is just an example of how to set the lights,
+[   6]        :                                       ; better if you run it in step-by-step mode.
+[   7]        :                                       ; DO NOT RUN AT MAXIMUM SPEED, DO NOT USE REAL CARS.
+[   8]        :                                       ;)
+[   9]        :                                       
+[  10]        :                                       
+[  11]        :                                       #start=Traffic_Lights.exe#
+[  12]        :                                       
+[  13]        :                                       name "traffic2"
+[  14]        :                                       
+[  15]        :                                       yellow_and_green equ      0000_0110b
+[  16]        :                                       red              equ      0000_0001b
+[  17]        :                                       yellow_and_red   equ      0000_0011b
+[  18]        :                                       green            equ      0000_0100b
+[  19]        :                                       
+[  20]        :                                       all_red          equ      0010_0100_1001b
+[  21]        :                                       
+[  22]    0000:                                       start:
+[  23]    0000: 90                                    nop
+[  24]        :                                       
+[  25]        :                                       
+[  26]        :                                       ; 0,1,2
+[  27]        :                                       
+[  28]    0001: B8 04 00                              mov ax, green
+[  29]    0004: E7 04                                 out 4, ax
+[  30]        :                                       
+[  31]    0006: B8 06 00                              mov ax, yellow_and_green
+[  32]    0009: E7 04                                 out 4, ax
+[  33]        :                                       
+[  34]    000B: B8 01 00                              mov ax,red
+[  35]    000E: E7 04                                 out 4, ax
+[  36]        :                                       
+[  37]    0010: B8 03 00                              mov ax, yellow_and_red
+[  38]    0013: E7 04                                 out 4, ax
+[  39]        :                                       
+[  40]        :                                       
+[  41]        :                                       ; 3,4,5
+[  42]        :                                       
+[  43]    0015: B8 20 00                              mov ax, green << 3
+[  44]    0018: E7 04                                 out 4, ax
+[  45]        :                                       
+[  46]    001A: B8 30 00                              mov ax, yellow_and_green << 3
+[  47]    001D: E7 04                                 out 4, ax
+[  48]        :                                       
+[  49]    001F: B8 08 00                              mov ax,red << 3
+[  50]    0022: E7 04                                 out 4, ax
+[  51]        :                                       
+[  52]    0024: B8 18 00                              mov ax, yellow_and_red << 3
+[  53]    0027: E7 04                                 out 4, ax
+[  54]        :                                       
+[  55]        :                                       
+[  56]        :                                       
+[  57]        :                                       ; 6,7,8
+[  58]        :                                       
+[  59]    0029: B8 00 01                              mov ax, green << 6
+[  60]    002C: E7 04                                 out 4, ax
+[  61]        :                                       
+[  62]    002E: B8 80 01                              mov ax, yellow_and_green << 6
+[  63]    0031: E7 04                                 out 4, ax
+[  64]        :                                       
+[  65]    0033: B8 40 00                              mov ax,red << 6
+[  66]    0036: E7 04                                 out 4, ax
+[  67]        :                                       
+[  68]    0038: B8 C0 00                              mov ax, yellow_and_red << 6
+[  69]    003B: E7 04                                 out 4, ax
+[  70]        :                                       
+[  71]        :                                       
+[  72]        :                                       
+[  73]        :                                       ; 9,A,B
+[  74]        :                                       
+[  75]    003D: B8 00 08                              mov ax, green << 9
+[  76]    0040: E7 04                                 out 4, ax
+[  77]        :                                       
+[  78]    0042: B8 00 0C                              mov ax, yellow_and_green << 9
+[  79]    0045: E7 04                                 out 4, ax
+[  80]        :                                       
+[  81]    0047: B8 00 02                              mov ax,red << 9
+[  82]    004A: E7 04                                 out 4, ax
+[  83]        :                                       
+[  84]    004C: B8 00 06                              mov ax, yellow_and_red << 9
+[  85]    004F: E7 04                                 out 4, ax
+[  86]        :                                       
+[  87]        :                                       
+[  88]        :                                       ; all
+[  89]        :                                       
+[  90]    0051: B8 49 02                              mov ax, all_red
+[  91]    0054: E7 04                                 out 4, ax
+[  92]        :                                       
+[  93]    0056: B8 92 04                              mov ax, all_red << 1  ; all yellow
+[  94]    0059: E7 04                                 out 4, ax
+[  95]        :                                       
+[  96]    005B: B8 24 09                              mov ax, all_red << 2  ; all green :)
+[  97]    005E: E7 04                                 out 4, ax
+[  98]        :                                       
+[  99]        :                                       
+[ 100]    0060: EB 9E                                 jmp start
+[ 101]        :                                       
+[ 102]        :                                       
+ 
+===================================================================================================
+ 
+
+
+
+
+===================================================================================================

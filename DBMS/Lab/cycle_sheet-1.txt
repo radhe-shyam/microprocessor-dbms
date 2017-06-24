@@ -1,0 +1,1007 @@
+SQL> create table employee( 
+		SSN varchar2(4) primary key,
+		fname varchar2(10) not null, 
+		mname varchar2(8), 
+		lname varchar2(10) not null, 
+		sex varchar2(1) not null,
+		address varchar2(30) not null, 
+		salary number(5) not null, 
+		DOB date not null, 
+		Department varchar2(4) not null, 
+		designation varchar2(10) not null, 
+		supervisorSSN varchar2(4) not null);
+
+Table created.
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ SSN                                       NOT NULL VARCHAR2(4)
+ FNAME                                     NOT NULL VARCHAR2(10)
+ MNAME                                              VARCHAR2(8)
+ LNAME                                     NOT NULL VARCHAR2(10)
+ SEX                                       NOT NULL VARCHAR2(1)
+ ADDRESS                                   NOT NULL VARCHAR2(30)
+ SALARY                                    NOT NULL NUMBER(5)
+ DOB                                       NOT NULL DATE
+ DEPARTMENT                                NOT NULL VARCHAR2(4)
+ DESIGNATION                               NOT NULL VARCHAR2(10)
+ SUPERVISORSSN                             NOT NULL VARCHAR2(4)
+
+SQL> create table department( 
+		Dept_No varchar2(4) primary key, 
+		Name varchar2(20) not null, 
+		ManagerSSN varchar2(4) not null, 
+		Manager_DOB date not null, 
+		location varchar2(20));
+
+Table created.
+
+SQL> desc department
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ DEPT_NO                                   NOT NULL VARCHAR2(4)
+ NAME                                      NOT NULL VARCHAR2(20)
+ MANAGERSSN                                NOT NULL VARCHAR2(4)
+ MANAGER_DOB                               NOT NULL DATE
+ LOCATION                                           VARCHAR2(20)
+
+SQL> alter table employee add foreign key (department) references department;
+
+SQL> create table project(
+		project_no varchar2(4) primary key, 
+		name varchar2(20) not null, 
+		location varchar2(20) not null, 
+		Controlling_department varchar2(4) not null, 
+		budget number(8) not null);
+
+Table created.
+
+SQL> desc project;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ PROJECT_NO                                NOT NULL VARCHAR2(4)
+ NAME                                      NOT NULL VARCHAR2(20)
+ LOCATION                                  NOT NULL VARCHAR2(20)
+ CONTROLLING_DEPARTMENT                    NOT NULL VARCHAR2(4)
+ BUDGET                                    NOT NULL NUMBER(8)
+
+SQL> create table works_on( 
+		SSN varchar2(4) references employee, 
+		project_no varchar2(4) not null, 
+		Hours number(6) default 0 not null, 
+		primary key(SSN, project_no));
+
+Table created.
+
+SQL> desc works_on;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ SSN                                       NOT NULL VARCHAR2(4)
+ PROJECT_NO                                NOT NULL VARCHAR2(4)
+ HOURS                                     NOT NULL NUMBER(6)
+
+SQL> create table dependent(
+		name varchar2(20), 
+		DOB date not null, 
+		sex varchar2(1) not null,
+		relationship varchar2(20) not null, 
+		employeessn varchar2(4) not null, 
+		primary key(name,employeessn));
+
+Table created.
+
+SQL> desc dependent;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ NAME                                      NOT NULL VARCHAR2(20)
+ DOB                                       NOT NULL DATE
+ SEX                                       NOT NULL VARCHAR2(1)
+ RELATIONSHIP                              NOT NULL VARCHAR2(20)
+ EMPLOYEESSN                               NOT NULL VARCHAR2(4)
+
+B)
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE01','BHARAT','','JANGID','M','BHINMAL',12000,'20-FEB-90','RD01','PROGRAMMER','RE02');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE02','NIKITA','','SANKHLA','F','JODHPUR',13000,'22-JAN-90','RD02','DESIGNER','RE01');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE03','DEEPALI','','SANKHLA','F','JODHPUR',13000,'01-NOV-91','RD03','DESIGNER','RE02');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE04','NEELAM','','YADAV','F','BIHAR',12000,'15-OCT-91','RD04','DESIGNER','RE03');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE05','SHUBHAM','KUMARI','MEWARA','F','UDAIPUR',9000,'25-OCT-91','RD05','SUPERVISOR','RE04');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE06','VIJAY','KUMAR','ARORA','M','PALI',11000,'08-JAN-91','RD06','PROGRAMMER','RE05');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE07','DHARMENDRA','SINGH','SANKHLA','M','JHARKHAND',15000,'28-FEB-92','RD07','MANAGER','RE06');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE08','PRAVEEN','KUMAR','JANGID','M','KASHMIR',21000,'21-MAR-92','RD07','MANGER','RE06');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE09','VIVEK','KUMAR','SHARMA','M','MUMBAI',25000,'15-DEC-91','RD08','MANGER','RE06');
+
+1 row created.
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE10','VIJAY','SINGH','SHARMA','M','PUNE',5000,'17-AUG-90','RD03','CLERK','RE05');
+
+1 row created.
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD01','SALES','RE02','22-JAN-90','EAST');
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD01','SALES','RE02','22-JAN-90','EAST');
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD02','PURCHASE','RE02','22-JAN-90','WEST');
+
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD03','HOSTING','RE02','22-JAN-90','SOUTH');
+
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD04','DEPLOYMENT','RE07','28-FEB-92','CHENNAI');
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD05','DEVELOPMENT','RE07','28-FEB-92','JODHPUR');
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD06','MARKETTING','RE07','28-FEB-92','BIKANER');
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD07','RESEARCH','RE08','21-MAR-92','JAIPUR');
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD08','TRAINING','RE09','15-DEC-91','MUMBAI');
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD09','ADVERTISEMENT','RE09','15-DEC-91','MUMBAI');
+
+1 row created.
+
+SQL> INSERT INTO DEPARTMENT VALUES('RD10','PUBLICATION','RE08','21-MAR-92','MUMBAI');
+
+1 row created.
+
+----------------------------------------------------------------------------------------------------------------
+
+SQL> ALTER TABLE EMPLOYEE ADD FOREIGN KEY(SUPERVISORSSN) REFERENCES EMPLOYEE;
+
+Table altered.
+
+SQL> ALTER TABLE EMPLOYEE ADD FOREIGN KEY(DEPARTMENT) REFERENCES DEPARTMENT;
+
+Table altered.
+
+SQL> ALTER TABLE DEPARTMENT ADD FOREIGN KEY(MANAGERSSN) REFERENCES EMPLOYEE;
+
+Table altered.
+
+SQL> ALTER TABLE PROJECT ADD FOREIGN KEY(CONTROLLING_DEPARTMENT) REFERENCES DEPA
+RTMENT;
+
+Table altered.
+
+SQL> ALTER TABLE PROJECT ADD FOREIGN KEY(CONTROLLING_DEPARTMENT) REFERENCES DEPA
+RTMENT;
+
+Table altered.
+
+SQL> ALTER TABLE DEPENDENT ADD FOREIGN KEY(EMPLOYEESSN) REFERENCES EMPLOYEE;
+
+Table altered.
+
+SQL> ALTER TABLE WORKS_ON ADD FOREIGN KEY(PROJECT_NO) REFERENCES PROJECT;
+
+Table altered.
+
+C.2)
+
+SQL> SELECT NAME , DOB FROM DEPENDENT;
+
+NAME                 DOB
+-------------------- ---------
+ROHIT                22-FEB-90
+SAPNA                23-MAR-91
+RAMESH               04-JUN-92
+GITESH               05-FEB-90
+JYOTSNA              03-APR-89
+KUMKUM               04-JAN-90
+ANJALI               08-AUG-92
+ANJU                 04-SEP-88
+KARAN                21-NOV-87
+JYOTIBHA             23-JAN-86
+
+10 rows selected.
+
+C.3)
+
+SQL> SELECT FNAME FROM EMPLOYEE WHERE FNAME LIKE 'S%';
+
+FNAME
+----------
+SHUBHAM
+
+
+C.4)
+
+SQL> SELECT FNAME FROM EMPLOYEE WHERE DEPARTMENT='RD05';
+
+FNAME
+----------
+SHUBHAM
+
+C.5)
+
+SQL> SELECT NAME FROM DEPENDENT WHERE SEX='F' AND EMPLOYEESSN='RE05';
+
+NAME
+--------------------
+SAPNA
+
+C.6)
+
+SQL> SELECT NAME FROM PROJECT WHERE LOCATION='INDIA';
+
+NAME
+--------------------
+BHCV
+SAMSUNG
+
+C.7)
+
+SQL> SELECT FNAME FROM EMPLOYEE WHERE SUPERVISORSSN IS NULL;
+
+no rows selected
+
+C.8)
+
+SQL> SELECT * FROM DEPARTMENT WHERE MANAGERSSN IS NOT NULL;
+
+DEPT NAME                 MANA MANAGER_D LOCATION
+---- -------------------- ---- --------- --------------------
+RD01 SALES                RE02 22-JAN-90 EAST
+RD02 PURCHASE             RE02 22-JAN-90 WEST
+RD03 HOSTING              RE02 22-JAN-90 SOUTH
+RD04 DEPLOYMENT           RE07 28-FEB-92 CHENNAI
+RD05 DEVELOPMENT          RE07 28-FEB-92 JODHPUR
+RD06 MARKETTING           RE07 28-FEB-92 BIKANER
+RD07 RESEARCH             RE08 21-MAR-92 JAIPUR
+RD08 TRAINING             RE09 15-DEC-91 MUMBAI
+RD09 ADVERTISEMENT        RE09 15-DEC-91 MUMBAI
+RD10 PUBLICATION          RE08 21-MAR-92 MUMBAI
+
+10 rows selected.
+
+C.9)
+
+SQL> SELECT NAME FROM PROJECT WHERE LOCATION='INDIA' AND CONTROLLING_DEPARTMENT=
+'RD01';
+
+NAME
+--------------------
+SAMSUNG
+
+C.10)
+
+SQL> SELECT FNAME FROM EMPLOYEE WHERE EXTRACT(YEAR FROM DOB)=1990;
+
+FNAME
+----------
+BHARAT
+NIKITA
+VIJAY
+
+C.11)
+
+SQL> SELECT FNAME FROM EMPLOYEE WHERE SALARY BETWEEN 12000 AND 30000;
+
+FNAME
+----------
+BHARAT
+NIKITA
+DEEPALI
+NEELAM
+DHARMENDRA
+PRAVEEN
+VIVEK
+
+7 rows selected.
+
+C.12)
+
+SQL> SELECT PROJECT_NO FROM WORKS_ON;
+
+PROJ
+----
+RP04
+RP05
+RP07
+RP04
+RP07
+RP06
+RP08
+RP08
+RP02
+RP04
+RP02
+
+11 rows selected.
+
+C.13)
+
+SQL> SELECT SSN FROM WORKS_ON WHERE PROJECT_NO IN('RP01','RP03','RP04');
+
+SSN
+----
+RE01
+RE10
+RE05
+
+C.14)
+
+SQL> SELECT MAX(SALARY) FROM EMPLOYEE;
+
+MAX(SALARY)
+-----------
+      25000
+
+C.15)
+
+SQL> SELECT EMPLOYEESSN, COUNT(EMPLOYEESSN) FROM DEPENDENT GROUP BY ROLLUP(EMPLO
+YEESSN);
+
+EMPL COUNT(EMPLOYEESSN)
+---- ------------------
+RE01                  1
+RE02                  1
+RE03                  1
+RE04                  2
+RE05                  2
+RE06                  1
+RE09                  1
+RE10                  1
+                     10
+
+C.16)
+
+SQL> SELECT SUM(SALARY) FROM EMPLOYEE WHERE DEPARTMENT='RD04';
+
+SUM(SALARY)
+-----------
+      12000
+
+C.17)
+
+SQL> SELECT COUNT(SSN) "NO" FROM WORKS_ON WHERE SSN='RE05';
+
+        NO
+----------
+         2
+
+2.2)
+
+SQL> INSERT INTO EMPLOYEE VALUES('RE11','PAWAN','SINGH','NAGAL','M','BIHAR',1900
+0,'21-FEB-88','RD01','PROGRAMMER','RE02');
+
+1 row created.
+
+2.3)
+
+SQL> ALTER TABLE PROJECT MODIFY NAME UNIQUE;
+
+Table altered.
+
+2.4)
+
+SQL> ALTER TABLE EMPLOYEE ADD AGE NUMBER(3);
+
+Table altered.
+
+2.5)
+
+SQL> ALTER TABLE PROJECT MODIFY NAME VARCHAR2(30);
+
+Table altered.
+
+2.6)
+
+SQL> ALTER TABLE EMPLOYEE MODIFY SALARY NUMBER(9,4);
+
+Table altered.
+
+2.7)
+
+SQL> ALTER TABLE DEPARTMENT MODIFY NAME VARCHAR2(18);
+
+Table altered.
+
+3.1)
+SQL> alter table department modify dept_number number(4) check (dept_number between 1000 and 2000);
+
+Table altered.
+
+3.2)
+SQL> alter table dependent modify relationship varchar2(8) check (relationship in('Spouse','Son','Daughter','Parent'));
+
+Table altered.
+
+3.3)
+SQL> alter table project modify name varchar2(4);
+
+Table altered.
+
+
+4.1)
+SQL> UPDATE EMPLOYEE SET AGE=ABS((EXTRACT(YEAR FROM DOB)-EXTRACT(YEAR FROM SYSDATE)));
+
+2 rows updated.
+
+4.2)
+SQL> SELECT EXTRACT(YEAR FROM DOB)+12 FROM EMPLOYEE;
+
+EXTRACT(YEARFROMDOB)+12
+-----------------------
+                   2000
+                   2000
+
+4.3)
+SQL> SELECT EXTRACT(MONTH FROM DOB) FROM EMPLOYEE;
+
+EXTRACT(MONTHFROMDOB)
+---------------------
+                    2
+                    2
+
+
+4.4)
+SQL> SELECT UPPER(NAME) FROM PROJECT;
+
+UPPER(NAME
+----------
+RP04
+RP05
+RP07
+RP04
+RP07
+RP06
+
+4.5)
+SQL> SELECT LPAD(NAME,10.'*') FROM DEPARTMENT;
+
+LPAD(SSN,1
+----------
+*****SALES                
+**PURCHASE 
+***HOSTING     
+
+4.6)
+SQL> SELECT SUBSTR(FNAME,0,5) FROM EMPLOYEE;
+
+SUBST
+-----
+KAILA
+KAILA
+
+4.7)
+SQL> SELECT MAX(LENGTH(NAME)) FROM DEPARTMENT;
+
+MAX(LENGTH(FNAME))
+------------------
+                13
+
+4.8)
+SQL> SELECT TO_CHAR(SYSDATE,'DDTH MONTHYYYY') FROM DUAL;
+
+TO_CHAR(SYSDATE,'D
+------------------
+11TH FEBRUARY 2013
+
+4.9)
+SQL> UPDATE EMPLOYEE SET FNAME=TRANSLATE(FNAME,'A','E');
+
+2 rows updated.
+
+4.10)
+SQL> SELECT NEXT_DAY(DOB,'FRI') FROM EMPLOYEE;
+
+NEXT_DAY(
+---------
+26-FEB-88
+26-FEB-88
+
+
+                                                                     
+                                                                     
+                                                                     
+                                             
+
+CYCLE SHEET - 2
+
+1)
+SQL> SELECT PROJECT_NO, CONTROLLING_DEPARTMENT, FNAME, ADDRESS FROM PROJECT, EMPLOYEE, DEPARTMENT WHERE MANAGERSSN=SSN AND DEPT_NO=CONTROLLING_DEPARTMENT;
+
+PROJ CONT FNAME      ADDRESS
+---- ---- ---------- -------
+RP01 1004 DHARMENDRA JAIPUR	
+RP02 1005 DHARMENDRA JAIPUR
+RP03 1009 VIVEK	     JODHPUR
+RP04 1005 DHARMENDRA JAIPUR
+RP05 1006 DHARMENDRA JAIPUR
+RP06 1003 NIKITA     BIKANER
+RP07 1007 PRAVEEN    UDAIPUR
+RP08 1006 DHARMENDRA JAIPUR
+RP09 1001 NIKITA     BIKANER	
+RP10 1010 PRAVEEN    UDAIPUR
+
+10 rows selected.
+
+
+2)
+SQL> SELECT FNAME, ADDRESS FROM EMPLOYEE WHERE DEPARTMENT=(SELECT DEPT_NO FROM D
+EPARTMENT WHERE NAME='SALES') ;
+
+FNAME      ADDRESS
+---------- ------------------------------
+BHARAT     BHINMAL
+PAWAN      BIHAR
+
+
+3)
+
+SQL> SELECT PROJECT_NO FROM WORKS_ON W, EMPLOYEE E WHERE LNAME='SANKHLA' AND W.S
+SN=E.SSN;
+
+PROJ
+----
+RP07
+RP02
+
+
+4)
+
+SQL> SELECT FNAME FROM EMPLOYEE WHERE SALARY>(SELECT SUM(SALARY) FROM EMPLOYEE WHERE DEPARTMENT='1005');
+
+FNAME
+----------
+PRAVEEN
+VIVEK
+PAWAN
+
+
+5)
+
+SQL> SELECT FNAME FROM EMPLOYEE E, DEPENDENT D WHERE FNAME=NAME AND E.SEX=D.SEX;
+
+
+FNAME
+----------
+DEEPALI
+
+
+6)
+SQL> SELECT FNAME FROM EMPLOYEE WHERE SSN IN (SELECT SSN FROM WORKS_ON WHERE PRO
+JECT_NUMBER IN (SELECT PROJECT_NUMBER FROM PROJECT WHERE DEPT_NAME=1001));
+
+FNAME
+----------
+Bala
+Eala
+Gala
+Cala
+
+
+
+7)
+SQL> SELECT FNAME FROM EMPLOYEE WHERE SSN NOT IN (SELECT UNIQUE EMPLOYEE_SSN FRO
+M DEPENDENT);
+
+FNAME
+----------
+Eala
+Fala
+Gala
+
+
+
+8)
+SQL> SELECT MANAGER_SSN FROM DEPARTMENT WHERE MANAGER_SSN IN (SELECT UNIQUE EMPL
+OYEE_SSN FROM DEPENDENT);
+
+MANA
+----
+RE1
+RE2
+RE3
+
+
+9)
+SQL> SELECT FNAME FROM EMPLOYEE WHERE SSN IN (SELECT EMPLOYEE_SSN FROM DEPENDENT
+ GROUP BY EMPLOYEE_SSN HAVING COUNT(*)>=2);
+
+FNAME
+----------
+Bala
+
+
+10)
+SQL> SELECT P.PROJECT_NUMBER, P.NAME, COUNT(*) FROM PROJECT P, WORKS_ON W WHERE
+P.PROJECT_NUMBER=W.PROJECT_NUMBER GROUP BY P.PROJECT_NUMBER, P.NAME;
+
+PROJ NAME   COUNT(*)
+---- ---- ----------
+RP2  DELL          1
+RP1  HP            1
+RP3  ASUS          2
+RP4  IBM           1
+
+
+11)
+SQL> SELECT P.PROJECT_NUMBER, P.NAME, COUNT(*) FROM PROJECT P, WORKS_ON W WHERE
+P.PROJECT_NUMBER=W.PROJECT_NUMBER GROUP BY P.PROJECT_NUMBER, P.NAME HAVING COUNT
+(*)>2;
+
+PROJ NAME   COUNT(*)
+---- ---- ----------
+RP3  ASUS          3
+
+
+12)
+SQL> SELECT DEPARTMENT, COUNT(*) FROM EMPLOYEE WHERE SALARY >40000 GROUP BY DEPA
+RTMENT HAVING COUNT(*)>5;
+
+DEPARTMENT   COUNT(*)
+---------- ----------
+      1001          7
+
+
+
+13)
+
+
+
+
+
+
+
+
+
+
+
+MISCELLANEOUS
+
+1)
+SQL> CREATE TABLE EMPL AS SELECT * FROM EMPLOYEE WHERE 1=2;
+
+Table created.
+
+2)
+SQL> CREATE TABLE DP AS SELECT * FROM DEPENDENT;
+
+Table created.
+
+
+3)
+SQL> CREATE TABLE STATUS AS SELECT DEPARTMENT, SUM(SALARY) "TOTAL_SALARY", COUNT
+(SSN) "NO_OF_EMPLOYEE" FROM EMPLOYEE GROUP BY DEPARTMENT;
+
+Table created.
+
+4)
+SQL> delete from employee where department in (select name from department where
+ name='R&'||'D');
+
+0 rows deleted.
+
+
+5)
+SQL> UPDATE employee SET SALARY=SALARY+SALARY*0.3 where department in (select na
+me from department where name='R&'||'D');
+
+0 rows updated.
+
+6)
+
+
+
+
+9)
+SQL> DESC DEPENDENT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+
+ NAME                                      NOT NULL VARCHAR2(20)
+ DOB                                       NOT NULL DATE
+ SEX                                       NOT NULL VARCHAR2(1)
+ RELATIONSHIP                              NOT NULL VARCHAR2(8)
+ EMPLOYEE_SSN                                       VARCHAR2(4)
+
+
+
+
+10)
+SQL> ALTER TABLE EMPLOYEE DROP CONSTRAINT SYS_C0010217;
+
+Table altered.
+
+11)
+SQL> SELECT CONSTRAINT_NAME, COLUMN_NAME FROM USER_CONS_COLUMNS WHERE TABLE_NAME
+='EMPLOYEE';
+
+CONSTRAINT_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+SYS_C0010218
+LNAME
+
+SYS_C0010219
+SEX
+
+SYS_C0010220
+ADDRESS
+
+
+CONSTRAINT_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+SYS_C0010221
+SALARY
+
+SYS_C0010222
+DOB
+
+SYS_C0010223
+DEPARTMENT
+
+
+CONSTRAINT_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+SYS_C0010224
+DESIGNATION
+
+SYS_C0010225
+SSN
+
+SYS_C0018811
+DEPARTMENT
+
+
+CONSTRAINT_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+range
+DEPARTMENT
+
+
+10 rows selected.
+
+
+
+12)
+SQL> SELECT OBJECT_NAME, OBJECT_TYPE FROM ALL_OBJECTS WHERE OBJECT_TYPE IN ('PRO
+CEDURE','FUNCTION','TRIGGER') AND ROWNUM<10;
+
+OBJECT_NAME                    OBJECT_TYPE
+------------------------------ -------------------
+SUBPTXT                        PROCEDURE
+GETTVOID                       FUNCTION
+XMLSEQUENCEFROMXMLTYPE         FUNCTION
+XQSEQUENCEFROMXMLTYPE          FUNCTION
+XMLSEQUENCEFROMREFCURSOR       FUNCTION
+XMLSEQUENCEFROMREFCURSOR2      FUNCTION
+SYS_IXMLAGG                    FUNCTION
+SYS_XMLAGG                     FUNCTION
+SYS_IXQAGG                     FUNCTION
+
+9 rows selected.
+
+
+13)
+SQL> SELECT * FROM USER_CONS_COLUMNS WHERE ROWNUM<10;
+
+OWNER                          CONSTRAINT_NAME
+------------------------------ ------------------------------
+TABLE_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+  POSITION
+----------
+12MCA0102                      BIN$/+Nvsf05QPW/dbktb3uDMQ==$0
+BIN$zTBxz4gCRdWx0ml8fQZoGA==$0
+SEX
+
+
+
+OWNER                          CONSTRAINT_NAME
+------------------------------ ------------------------------
+TABLE_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+  POSITION
+----------
+12MCA0102                      BIN$/+xq2R0/RvqTtPAxk5W7sw==$0
+BIN$YDhU+TlYTWax5Rx5K/3zYQ==$0
+LOCATION
+
+
+
+OWNER                          CONSTRAINT_NAME
+------------------------------ ------------------------------
+TABLE_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+  POSITION
+----------
+12MCA0102                      BIN$0fvF7b3BRKKwfj+korAffQ==$0
+BIN$HWLLqO8iRu2hoUab1wO4fg==$0
+SSN
+         1
+
+
+OWNER                          CONSTRAINT_NAME
+------------------------------ ------------------------------
+TABLE_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+  POSITION
+----------
+12MCA0102                      BIN$3RDY2P/+TEqCvDq34HboPg==$0
+BIN$HWLLqO8iRu2hoUab1wO4fg==$0
+LNAME
+
+
+
+OWNER                          CONSTRAINT_NAME
+------------------------------ ------------------------------
+TABLE_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+  POSITION
+----------
+12MCA0102                      BIN$5HreqfIGSDC2q+3JHn0H2Q==$0
+BIN$HWLLqO8iRu2hoUab1wO4fg==$0
+DEPARTMENT
+
+
+
+OWNER                          CONSTRAINT_NAME
+------------------------------ ------------------------------
+TABLE_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+  POSITION
+----------
+12MCA0102                      BIN$7RxdSdGHRj61y5mL3/eCZA==$0
+BIN$KC6WbDe9Qg+f5ZJksYY7hQ==$0
+SEX
+
+
+
+OWNER                          CONSTRAINT_NAME
+------------------------------ ------------------------------
+TABLE_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+  POSITION
+----------
+12MCA0102                      BIN$9GgDd8GaQsCn+hBWRk5EFA==$0
+BIN$CO4usidlR/qM2lyIbzkwgA==$0
+DOB
+
+
+
+OWNER                          CONSTRAINT_NAME
+------------------------------ ------------------------------
+TABLE_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+  POSITION
+----------
+12MCA0102                      BIN$AKq1K3MYQ/ucNxP/VgONsQ==$0
+BIN$CO4usidlR/qM2lyIbzkwgA==$0
+RELATIONSHIP
+
+
+ 
+OWNER                          CONSTRAINT_NAME
+------------------------------ ------------------------------
+TABLE_NAME
+------------------------------
+COLUMN_NAME
+--------------------------------------------------------------------------------
+
+  POSITION
+----------
+12MCA0102                      BIN$CpeTEsnZTjq9kJVKUTlJwA==$0
+BIN$xIxZGv8eRVaNXNpEUyhJOA==$0
+SEX
+
+
+
+9 rows selected.
+
+14)
+
+SQL> SELECT TEXT FROM USER_SOURCE WHERE NAME='RDJ';
+
+TEXT
+--------------------------------------------------------------------------------
+
+FUNCTION RDJ() AS
+BEGIN
+--THIS IS THE FUNCTION
+END;
+
+
+15)
+SQL> SELECT TEXT FROM USER_SOURCE WHERE NAME='RDJ' AND TYPE='TRIGGER';
+
+TEXT
+--------------------------------------------------------------------------------
+
+TRIGGER RDJ BEFORE INSERT ON EMPLOYEE FOR EACH ROW
+BEGIN
+--THIS IS TRIGGER
+END;
+
+
+
+
+

@@ -1,0 +1,18 @@
+
+org 100h
+ 
+mov [2000h],032h
+mov [2001h],015h
+
+mov al,[2000h]
+mov ah,[2000h]
+mov bl,[2001h]
+mov bh,[2001h]
+and al,00fh
+and ah,0f0h
+and bl,00fh
+and bh,0f0h
+add al,bl
+add ah,bh
+
+ret

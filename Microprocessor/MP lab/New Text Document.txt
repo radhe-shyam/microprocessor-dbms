@@ -1,0 +1,116 @@
+;find minimum and maximum in array
+;org 100h
+;           
+;jmp start
+;arr db 06h, 07h, 08h ,09
+;start:
+;lea si, arr
+;mov cl, 03h  
+;mov al, [si]
+;mov bl, [si]  
+;inc si
+;search:       
+;    cmp al,[si]
+;    jnc max
+;    mov al,[si]
+;    max: 
+;    cmp bl,[si]
+;    jc min
+;    mov bl, [si]
+;    min:
+;    inc si
+;    loop search
+;ret
+
+
+;search for data in array
+;org 100h
+           
+;jmp start
+;arr db 06h, 07h, 08h ,09
+;start:
+;lea si, arr
+;mov cl, 04h
+;search:       
+;    mov bl,07h
+;    mov al, [si]
+;    sub al,bl
+;    jz end
+;    inc si
+;    loop search
+;mov ax, 00
+;ret
+;end:
+;mov ax,si
+
+;ret
+
+
+
+
+
+;swaping
+;mov ax, 08h
+;mov bx, 09h
+;mov cx, ax
+;mov ax, bx
+;mov bx, cx
+
+
+
+
+;minimum of 2 numbers
+;mov cx, 06h
+;mov bx, 08h
+;mov ax, bx
+;sub bx, cx
+;jc min
+;mov ax, cx
+;min:          
+
+
+
+         
+;maximum of 2 numbers
+;mov cx, 08h
+;mov bx, 04h
+;mov ax, bx
+;sub bx, cx
+;jnc max
+;mov ax, cx
+;max:          
+          
+          
+          
+          
+          
+          
+;factorial
+;mov bx,00h
+;mov ax,01h
+;add bx,bx
+;jz end   
+;fact:
+;mul bx
+;dec bx
+;jnz fact
+;end:
+
+
+
+
+;fibonacci series
+;mov bx, 0h
+;mov ax, 01h
+;mov cl, 06h
+;fibo:     
+;mov dx, ax
+;add ax, bx
+;mov bx, dx
+;dec cl
+;jnz fibo
+ret
+
+
+
+

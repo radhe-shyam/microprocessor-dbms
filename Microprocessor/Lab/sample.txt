@@ -1,0 +1,17 @@
+Aim:
+  To perform addition of two 8bit unsigned numbers using 8086.
+Algorithm:
+   1.move the data to a register (al register)
+   2.move the data to yhe bl register (bl register)
+   3.add the two register content
+   4.terminate the program
+Program:
+   mov al,0004h
+   mov bl,0004h
+   add al,bl
+   end
+Result:
+   thus,the program to add two 8-bit unsigned numbers was executed
+
+
+left side write input nd ouput

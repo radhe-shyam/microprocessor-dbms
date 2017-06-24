@@ -1,0 +1,43 @@
+3.1)
+SQL> alter table department modify dept_number number(4) check (dept_number between 1000 and 2000);
+
+Table altered.
+
+3.2)
+SQL> alter table dependent modify relationship varchar2(8) check (relationship in('Spouse','Son','Daughter','Parent'));
+
+Table altered.
+
+3.3)
+SQL> alter table project modify name varchar2(4);
+
+Table altered.
+
+
+4.1)
+SQL> UPDATE EMPLOYEE SET AGE=ABS((EXTRACT(YEAR FROM DOB)-EXTRACT(YEAR FROM SYSDATE)));
+
+2 rows updated.
+
+4.2)
+SQL> SELECT EXTRACT(YEAR FROM DOB)+12 FROM EMPLOYEE;
+
+EXTRACT(YEARFROMDOB)+12
+-----------------------
+                   2000
+                   2000
+
+4.3)
+SQL> SELECT EXTRACT(MONTH FROM DOB) FROM EMPLOYEE;
+
+EXTRACT(MONTHFROMDOB)
+---------------------
+                    2
+                    2
+
+
+4.4)
+SQL> SELECT UPPER(NAME) FROM PROJECT;
+
+UPPER(NAME
+----------

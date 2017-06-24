@@ -1,0 +1,21 @@
+org 100h
+mov cl,0ch
+mov dl,01bh
+cmp cl,dl  
+jnc s
+xchg cl,dl 
+s:  
+	mov bl,cl
+	mov al,cl
+c:
+	div dl      
+	sub ah,00
+	mov al,cl
+	jnz m 
+ret
+m:  
+	add al,bl	
+	mov cl,al 
+	mov ah,00
+	jmp c
+ret

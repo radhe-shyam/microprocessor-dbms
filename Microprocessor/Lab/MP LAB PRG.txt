@@ -1,0 +1,188 @@
+EX : 1. 8-BIT UNSIGNED ARITHMETIC OPERATIONS
+A) PERFORMING ADD
+
+mov al,0005h
+mov bl,0003h
+add al,bl
+end
+
+B)PERFORMING SUB
+
+mov al,0005h
+mov bl,0003h
+sub al,bl
+end
+
+C)PERFORMING MUL
+
+mov al,0005h
+mov bl,0003h
+mul bl
+end
+
+D)PERFORMING DIV
+
+mov al,000fh
+mov bl,0003h
+div bl
+end
+
+EX : 2. 16-BIT UNSIGNED ARITHMETIC OPERATIONS
+A)PERFORMING ADD
+
+mov ax,0a2fh
+mov bx,11b3h
+add ax,bx
+end
+
+B)PERFORMING SUB
+
+mov ax,56ffh
+mov bx,1189h
+sub ax,bx
+end
+
+C)PERFORMING MUL
+
+mov ax,56ffh
+mov bx,1189h
+mul bx
+end
+
+D)PERFORMING DIV
+
+mov ax,0c6ffh
+mov bx,02233h
+div bx
+end
+
+EX : 3. 8-BIT SIGNED ARITHMETIC OPERATIONS
+A)PERFORMING ADD
+
+mov al,0005h
+mov bl,-0003h
+add al,bl
+end
+
+B)PERFORMING SUB
+
+mov al,-0005h
+mov bl,0003h
+sub al,bl
+end
+
+C)PERFORMING MUL
+
+mov al,0005h
+mov bl,-0003h
+mul bl
+end
+
+D)PERFORMING DIV
+
+mov al,000fh
+mov bl,-0003h
+div bl
+end
+
+EX : 4. 16-BIT SIGNED ARITHMETIC OPERATIONS
+A)PERFORMING ADD
+
+mov ax,0c5fah
+mov bx,-2413h
+add ax,bx
+end
+
+B)PERFORMING SUB
+
+mov ax,03dfbh
+mov bx,-241ah
+sub ax,bx
+end
+
+C)PERFORMING MUL
+
+mov ax,-03abch
+mov bx,0ae54h
+mul bx
+end
+
+D)PERFORMING DIV
+
+mov ax,-03abch
+mov bx,0ae54h
+div bx
+end
+
+EX : 5. WRITE AN ALP TO PERFORM THE LOGICAL OPERATIONS USING 8086
+A)PERFORMING AND
+
+mov ax,0a5f2h
+mov bx,0bfffh
+and ax,bx
+end
+
+B)PERFORMING OR
+
+mov ax,0a5f2h
+mov bx,0bfffh
+or ax,bx
+end
+
+C)PERFORMING NOT
+
+mov ax,0a5f2h
+not ax
+end
+
+D)PERFORMING NEG
+
+mov ax,0a5f2h
+neg ax
+end
+
+EX : 6. BCD ARITHMETIC
+A)PERFORMING ADD
+
+MOV AL,23H
+MOV BL,0FH
+AND AL,BL
+MOV BL,05H
+ADD AL,BL
+MOV AH,23H
+MOV BH,0F0H
+AND AH,BH
+MOV BH,40H
+ADD AH,BH
+MOV SI,2000H
+MOV [SI],AH
+END
+
+B)PERFORMING SUB
+
+MOV AL,23H
+MOV BL,0FH
+AND AL,BL
+MOV BL,05H
+SUB AL,BL
+MOV AH,23H
+MOV BH,0F0H
+AND AH,BH
+MOV BH,40H
+SUB AH,BH
+MOV SI,2000H
+MOV [SI],AH
+END
+
+EX : 7. SUM OF N NUMBERS
+
+MOV AX,0003H
+MOV CX,AX
+MOV BX,AX
+MOV DX,0001H
+L1: INC BX
+    ADD AX,BX
+    INC DX
+    CMP CX,DX
+    JNZ L1
+END

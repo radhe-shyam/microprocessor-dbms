@@ -1,0 +1,25 @@
+org 100h
+
+mov [2000h],04h
+mov [2001h],02h
+
+mov al,[2000h]
+mov bl,[2001h]
+add al,bl
+mov [2002h], al
+
+mov al, [2000h]
+sub al,bl
+mov [2003h],al
+
+mov al, [2000h]
+mul bl
+mov [2004h],ax
+mov ah,00h
+
+mov al,[2000h]
+div bl
+mov [2005h],al
+
+
+ret

@@ -1,0 +1,38 @@
+name "add-2"
+
+; this example calculates the sum of a vector with
+; another vector and saves result in third vector.
+
+; you can see the result if you click the "vars" button.
+; set elements for vec1, vec2 and vec3 to 4 and show as "signed".
+
+org 100h
+
+jmp start
+arr db 06h, 07h, 08h ,09
+start:
+lea si, arr
+mov cl, 03h
+mov al, [si]
+mov bl, [si]
+inc si
+search:
+cmp al,[si]
+jnc max
+mov al,[si]
+max:
+cmp bl,[si]
+jc min
+mov bl, [si]
+min:
+inc si
+loop search
+ret
+
+
+
+
+
+
+
+; [SOURCE]: D:\emu8086\examples\add_two_arrays.asm

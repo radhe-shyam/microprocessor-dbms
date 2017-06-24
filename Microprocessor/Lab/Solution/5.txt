@@ -1,0 +1,24 @@
+org 100h
+ 
+mov [2000h],03h
+mov [2002h],02h
+
+mov ax,[2000h]
+mov bx,[2002h]
+and ax,bx
+mov [2004h], ax
+
+mov ax, [2000h]
+or ax,bx
+mov [2006h],ax
+
+mov ax, [2000h]
+not ax
+mov [2008h],ax
+
+mov ax,[2000h]
+neg ax
+mov [2010h],ax
+
+
+ret

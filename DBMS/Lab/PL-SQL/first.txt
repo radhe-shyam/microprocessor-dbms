@@ -1,0 +1,24 @@
+DECLARE
+j number(2);
+k number(2);
+BEGIN
+for j in
+1..25
+loop
+insert into employee values(concat('RE',J),concat(chr(65+j),'ala'),'','RAM','M',CONCAT(CONCAT(CHR(65+J),' ROAD,'),CONCAT(CHR(65+J),'AIPUR')),6750*J,CONCAT(CONCAT(J,'-JAN-'),1970+J),1000+J,'PROGRAMMER',concat('RE',J));
+end loop;
+END;
+/
+
+
+
+
+
+
+
+
+
+insert into dhan values(concat(chr(65+j),'ala ram'),concat(concat(j,'-jan-'),1970+j));
+
+
+insert into employee values(concat('RE0',5),concat(chr(65+5),'ala'),'','RAM','M',CONCAT(CONCAT(CHR(65+5),' ROAD,'),CONCAT(CHR(65+5),'AIPUR')),6750*5,CONCAT(CONCAT(5,'-JAN-'),1970+5),1000+5,'PROGRAMMER',concat('RE0',5));
